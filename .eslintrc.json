@@ -15,6 +15,7 @@
       "import/prefer-default-export": "off",
       "no-extra-semi": "off",
       "class-methods-use-this": "off",
-      "no-param-reassign": "off"
+      "no-param-reassign": "off",
+      "camelcase": "off"
     }
 }
