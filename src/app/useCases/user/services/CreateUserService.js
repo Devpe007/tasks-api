@@ -6,6 +6,14 @@ class CreateUserService {
   async execute({
     name, email, phone, password,
   }) {
+    const [user] = await db.query(`
+      SELECT * FROM users WHERE email = $1
+    `, [email]);
+
+    if (user) {
+      throw new Error('This email is already been used!');
+    };
+
     const passwordHash = await hash(password, 8);
 
     const [row] = await db.query(`
