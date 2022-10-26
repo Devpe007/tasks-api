@@ -1,12 +1,21 @@
+import * as Yup from 'yup';
+
 import CreateUserService from '../services/CreateUserService';
 
 class CreateUserController {
   async handle(request, response) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      email: Yup.string().required(),
+      phone: Yup.string(),
+      password: Yup.string().required().min(6),
+    });
+
     const {
       name, email, phone, password,
     } = request.body;
 
-    if (!name || !email || !password) {
+    if (!(await schema.isValid(request.body))) {
       throw new Error('Fill in the fields correctly');
     };
 
