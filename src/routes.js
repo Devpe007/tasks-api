@@ -8,6 +8,7 @@ import DetailUserController from './app/useCases/user/Controllers/DetailUserCont
 
 import CreateCategoryController from './app/useCases/categories/Controllers/CreateCategoryController';
 import UpdateCategoryController from './app/useCases/categories/Controllers/UpdateCategoryController';
+import ShowCategoryController from './app/useCases/categories/Controllers/ShowCategoryController';
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.get('/me', authHandler, new DetailUserController().handle);
 
 router.post('/category', authHandler, new CreateCategoryController().handle);
 router.put('/category/:id', authHandler, new UpdateCategoryController().handle);
+router.get('/categories', authHandler, new ShowCategoryController().handle);
 
 export { router };
