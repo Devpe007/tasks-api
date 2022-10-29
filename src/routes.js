@@ -1,4 +1,7 @@
 import { Router } from 'express';
+import multer from 'multer';
+
+import uploadConfig from './config/multer';
 
 import authHandler from './app/middlewares/authentication/authHandler';
 
@@ -11,7 +14,11 @@ import UpdateCategoryController from './app/useCases/categories/Controllers/Upda
 import ShowCategoryController from './app/useCases/categories/Controllers/ShowCategoryController';
 import DeleteCategoryController from './app/useCases/categories/Controllers/DeleteCategoryController';
 
+import CreateTaskController from './app/useCases/tasks/Controllers/CreateTaskController';
+
 const router = Router();
+
+const upload = multer(uploadConfig.upload('./tmp'));
 
 router.post('/register', new CreateUserController().handle);
 router.post('/login', new AuthUserController().handle);
@@ -22,5 +29,7 @@ router.post('/category', authHandler, new CreateCategoryController().handle);
 router.put('/category/:id', authHandler, new UpdateCategoryController().handle);
 router.delete('/category/:id', authHandler, new DeleteCategoryController().handle);
 router.get('/categories', authHandler, new ShowCategoryController().handle);
+
+router.post('/task', authHandler, new CreateTaskController().handle);
 
 export { router };
