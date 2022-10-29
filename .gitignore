@@ -3,4 +3,6 @@ node_modules/
 
 src/database/index.js
 
+tmp
+
 .env
