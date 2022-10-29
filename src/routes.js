@@ -30,6 +30,6 @@ router.put('/category/:id', authHandler, new UpdateCategoryController().handle);
 router.delete('/category/:id', authHandler, new DeleteCategoryController().handle);
 router.get('/categories', authHandler, new ShowCategoryController().handle);
 
-router.post('/task', authHandler, new CreateTaskController().handle);
+router.post('/task', authHandler, upload.single('file'), new CreateTaskController().handle);
 
 export { router };
