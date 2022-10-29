@@ -15,6 +15,7 @@ import ShowCategoryController from './app/useCases/categories/Controllers/ShowCa
 import DeleteCategoryController from './app/useCases/categories/Controllers/DeleteCategoryController';
 
 import CreateTaskController from './app/useCases/tasks/Controllers/CreateTaskController';
+import ShowTaskController from './app/useCases/tasks/Controllers/ShowTaskController';
 
 const router = Router();
 
@@ -31,5 +32,6 @@ router.delete('/category/:id', authHandler, new DeleteCategoryController().handl
 router.get('/categories', authHandler, new ShowCategoryController().handle);
 
 router.post('/task', authHandler, upload.single('file'), new CreateTaskController().handle);
+router.get('/tasks', authHandler, new ShowTaskController().handle);
 
 export { router };
