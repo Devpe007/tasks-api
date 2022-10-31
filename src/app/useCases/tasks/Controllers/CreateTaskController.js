@@ -6,16 +6,12 @@ class CreateTaskController {
 
     const createTaskService = new CreateTaskService();
 
-    let image;
-
     // eslint-disable-next-line no-unused-vars
-    if (!request.file) {
-      image = null;
-    };
+    const image = request.file?.filename;
 
     const task = await createTaskService.execute({
       name,
-      image,
+      image: image || null,
       description,
       category_id,
     });
