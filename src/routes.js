@@ -17,6 +17,7 @@ import DeleteCategoryController from './app/useCases/categories/Controllers/Dele
 import CreateTaskController from './app/useCases/tasks/Controllers/CreateTaskController';
 import ShowTaskController from './app/useCases/tasks/Controllers/ShowTaskController';
 import UpdateTaskController from './app/useCases/tasks/Controllers/UpdateTaskController';
+import DeleteTaskController from './app/useCases/tasks/Controllers/DeleteTaskController';
 
 const router = Router();
 
@@ -34,6 +35,7 @@ router.get('/categories', authHandler, new ShowCategoryController().handle);
 
 router.post('/task', authHandler, upload.single('file'), new CreateTaskController().handle);
 router.put('/task/:id', authHandler, upload.single('file'), new UpdateTaskController().handle);
+router.delete('/task/:id', authHandler, new DeleteTaskController().handle);
 router.get('/tasks', authHandler, new ShowTaskController().handle);
 
 export { router };
